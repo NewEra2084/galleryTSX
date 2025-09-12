@@ -1,19 +1,40 @@
-type Props = {
-  children: React.ReactNode;
-  variant: string
-}
-type variants = Record<"small" | "md" | "big", string>;
-const Variants: variants = {
-    small: "p-2",
-    md: "p-4",
-    big: "p-8"
+import type { MouseEventHandler } from "react";
+
+type variants = "small" | "md" | "big";
+const Variants: Record<variants, string> = {
+  small: " p-1 lg:px-2 ",
+  md: " p-2 lg:p-3 ",
+  big: " p-3 lg:p-4 ",
 };
 
-export const Button = ({children, variant}:Props) => {
-  const buttonVar = Variants[variant];
+type Props = {
+  children: React.ReactNode;
+  className?: string;
+  variant?: variants;
+  border?: boolean;
+  onClick?: MouseEventHandler;
+};
+
+export const Button = ({
+  children,
+  className,
+  variant = "md",
+  border = false,
+  onClick,
+}: Props) => {
+  const classNameVariant = Variants[variant];
   return (
-    <button className={buttonVar}>
+    <button
+      className={
+        `dark:text-White text-Dark bg-none hover:bg-third dark:hover:bg-third-dark rounded-lg ${
+          border && "border border-Dark dark:border-White"
+        } h-fit` +
+        classNameVariant +
+        className
+      }
+      onClick={onClick}
+    >
       {children}
     </button>
-  )
-}
+  );
+};

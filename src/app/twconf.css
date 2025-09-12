@@ -2,7 +2,17 @@
 
 @custom-variant dark (&:is(.dark *));
 @theme{
-  --color-main-blue: #624AD8;
-  --color-main-dark: #190773;
-  --color-secondary-dark: #242424;
+  --color-main: #dadada;
+  --color-second: #d8d8d8;
+  --color-third: #c9c9c9;
+  --color-main-dark: #242424;
+  --color-second-dark: #141414;
+  --color-third-dark: #272727;
+  --color-White: #e2e2e2;
+  --color-Dark: #242424;
+}
+
+.active{
+  box-sizing: border-box;
+  border-bottom: inset 4px orange;
 }

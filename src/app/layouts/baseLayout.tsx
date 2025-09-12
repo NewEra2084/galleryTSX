@@ -8,7 +8,7 @@ export const BaseLayout = ({}: Props) => {
   return (
     <>
       <Header/>
-      <main className="dark:bg-secondary-dark h-[1000px]">
+      <main className="dark:bg-main-dark min-h-[90vh] py-7">
         <Outlet></Outlet>
       </main>
       <Footer/>

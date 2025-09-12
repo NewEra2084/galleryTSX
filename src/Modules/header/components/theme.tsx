@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button } from "../../../shared/ui/button";
 
 export const Theme = () => {
   const [theme, setTheme] = useState("light");
@@ -22,12 +23,14 @@ export const Theme = () => {
       document.documentElement.classList.remove("dark");
     }
   }, [theme]);
+
   return (
-    <button
-      className=""
+    <Button
+      variant="small"
+      border
       onClick={() => {
         lightDark();
       }}
-    >Сменить тему</button>
+    >Сменить тему</Button>
   );
 }
