@@ -12,7 +12,6 @@ type Props = {
   className?: string;
   variant?: variants;
   border?: boolean;
-  onClick?: MouseEventHandler;
 };
 
 export const Button = ({
@@ -20,7 +19,7 @@ export const Button = ({
   className,
   variant = "md",
   border = false,
-  onClick,
+  ...props
 }: Props) => {
   const classNameVariant = Variants[variant];
   return (
@@ -32,7 +31,7 @@ export const Button = ({
         classNameVariant +
         className
       }
-      onClick={onClick}
+      {...props}
     >
       {children}
     </button>

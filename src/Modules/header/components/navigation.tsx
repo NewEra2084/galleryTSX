@@ -1,15 +1,17 @@
 import { NavLink } from "react-router";
-import { Button } from "../../../shared/ui/button";
+import { Button } from "../../../app/ui/button";
 
-interface NavProps{
-  to:string,
-  children:string
+interface NavProps {
+  to: string;
+  children: string;
 }
 
-
-const NavElement = ({to,children}:NavProps) => {
+const NavElement = ({ to, children }: NavProps) => {
   return (
-    <NavLink to={to} className={({isActive})=> isActive ? "active h-fit" : "pb-1 h-fit"}>
+    <NavLink
+      to={to}
+      className={({ isActive }) => (isActive ? "active h-fit" : "pb-1 h-fit")}
+    >
       <Button variant="small">{children}</Button>
     </NavLink>
   );

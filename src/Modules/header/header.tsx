@@ -1,5 +1,5 @@
 import { Theme } from "./components/theme";
-import logo from "../../shared/assets/logo.svg";
+import logo from "../../app/assets/logo.svg";
 import { Link } from "react-router";
 import { Navigation } from "./components/navigation";
 
