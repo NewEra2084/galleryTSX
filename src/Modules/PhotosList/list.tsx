@@ -1,24 +1,30 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { photosContext } from "./store/listContext";
+import type { State, Action } from "./store/galleryReducer";
 import { getPhotos } from "./helpers/getPhotos";
 import { Photo } from "./components/photo";
 
+type reducer = [photos: State, dispatchPhotos: ({}: Action) => State | void];
+
 export const List = () => {
-  const [photos, setPhotos] = useState<object[]>([]);
+  const [state, dispatchPhotos] = useContext<reducer>(photosContext);
 
   useEffect(() => {
-    (async () => {
-      const req = await getPhotos();
-      setPhotos(req);
-    })();
-    console.log(photos);
+    dispatchPhotos({ type: "setPage", page: 1 });
   }, []);
+  useEffect(() => {    
+    (async () => {
+      const res = await getPhotos(state.page);
+      dispatchPhotos({ type: "setPhotos", photos: res });
+      
+    })();
+  }, [state.page]);
 
   return (
-    <photosContext.Provider value={[photos, setPhotos]}>
+    <photosContext.Provider value={[state, dispatchPhotos]}>
       <div className="flex flex-col gap-y-5 gap-x-10 flex-wrap max-h-[100%]">
-        {photos.length > 0 &&
-          photos.map((item, id) => {
+        {state.photos.length > 0 &&
+          state.photos.map((item, id) => {
             return <Photo item={item} key={id} />;
           })}
       </div>
